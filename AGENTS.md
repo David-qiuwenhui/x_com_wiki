@@ -4,16 +4,17 @@
 
 ## 核心原则
 
-- `raw/` 是原始来源层，除非用户明确要求清理或迁移，不修改其中内容。
+- `raw/` 和 `Clippings/` 是原始来源层，除非用户明确要求清理或迁移，不修改其中内容。
 - `wiki/` 是 LLM 生成和维护的知识层，可以创建、重写、合并、拆分页面。
 - 每次 ingest 都要更新 `index.md` 和 `log.md`。
-- 每个重要事实、观点或判断都要能追溯到 `raw/` 来源或 `wiki/sources/` 来源页。
+- 每个重要事实、观点或判断都要能追溯到 `raw/`、`Clippings/` 来源或 `wiki/sources/` 来源页。
 - 当新来源和旧结论冲突时，不要静默覆盖；在相关页面标注分歧、时间和来源。
 - 优先使用 Obsidian 双链，例如 `[[wiki/topics/AI Agents]]`。
 
 ## 目录约定
 
-- `raw/x/`: Obsidian Web Clipper 保存的 x.com 推文、thread、article、profile 或搜索结果。
+- `Clippings/`: 用户当前使用的 Obsidian Web Clipper 原始语料目录，优先视为 x.com 剪藏入口。
+- `raw/x/`: 备用的 x.com 推文、thread、article、profile 或搜索结果原始语料目录。
 - `raw/assets/`: Web Clipper 下载的图片和附件。
 - `wiki/sources/`: 每个原始来源对应的消化页。
 - `wiki/topics/`: 可持续更新的主题页。
@@ -34,7 +35,7 @@
 
 ## Ingest 流程
 
-用户要求 ingest 一个或多个 `raw/x/` 文件时：
+用户要求 ingest 一个或多个 `Clippings/` 或 `raw/x/` 文件时：
 
 1. 阅读原始文件，保留原文语境，不凭空补充来源中没有的信息。
 2. 在 `wiki/sources/` 创建或更新对应来源页，优先使用 `templates/source-note.md`。
@@ -49,6 +50,14 @@
 5. 如内容适合周期回顾，更新或创建 `wiki/digests/` 页面。
 6. 更新 `index.md`。
 7. 在 `log.md` 追加一条 `ingest` 记录。
+
+## Git 与发布策略
+
+- 每次完成 ingest、digest、lint 或结构性维护后，都应创建一个语义清晰的本地 commit。
+- `Clippings/` 默认只在本地保留，不纳入 git，不推送到公开仓库。
+- 公开仓库默认只保存 `wiki/`、`index.md`、`log.md`、模板和项目规约。
+- push 前必须检查提交范围，确认没有把原始语料、隐私信息或不适合公开的内容发布出去。
+- 如用户明确要求公开某些原始语料，才可以把对应文件加入 git。
 
 ## Query 流程
 
@@ -91,4 +100,3 @@
 - 摘要要短，综合页可以逐步增长。
 - 明确标注不确定性，不把观点写成事实。
 - 不为追求完整性制造空洞栏目；没有信息就省略或标注“尚无来源”。
-

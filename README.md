@@ -4,15 +4,23 @@
 
 ## 日常工作流
 
-1. 用 Obsidian Web Clipper 将 x.com 内容保存到 `raw/x/`。
+1. 用 Obsidian Web Clipper 将 x.com 内容保存到 `Clippings/`。
 2. 如果页面有图片或附件，保存到 `raw/assets/`。
 3. 让 Codex ingest 某个文件或一批文件。
 4. Codex 会更新 `wiki/`、`index.md` 和 `log.md`。
 5. 定期让 Codex 生成 `wiki/digests/` 摘要或运行 `wiki/lint/` 健康检查。
 
+## Git 使用原则
+
+- 整理后本地 commit，让知识库保留清晰历史。
+- 公开前审一眼，确认安全再 push。
+- `Clippings/` 本地保留但不进 git，避免把完整原始语料直接发布到公开仓库。
+- 公开仓库主要保存整理后的 `wiki/`、`index.md`、`log.md` 和项目规约。
+
 ## 目录结构
 
-- `raw/`: 原始材料层。这里的文件是来源真相，默认只读。
+- `Clippings/`: 当前 Obsidian Web Clipper 原始语料入口。
+- `raw/`: 备用原始材料层。这里的文件是来源真相，默认只读。
 - `wiki/`: LLM 维护的知识层。这里存摘要、主题页、人物页、组织页、问题分析和周期 digest。
 - `templates/`: ingest、主题页、digest 等页面模板。
 - `index.md`: 内容索引，回答问题前优先阅读。
@@ -22,7 +30,6 @@
 ## Obsidian 建议
 
 - 将本目录作为 Obsidian vault 打开。
-- Web Clipper 保存路径建议设为 `raw/x/`。
+- Web Clipper 保存路径建议设为 `Clippings/`。
 - 附件路径建议设为 `raw/assets/`。
 - 使用双链时优先链接 `wiki/` 页面，不直接在 `raw/` 文件之间编织结构。
-
