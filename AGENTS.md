@@ -51,6 +51,14 @@
 6. 更新 `index.md`。
 7. 在 `log.md` 追加一条 `ingest` 记录。
 
+## URL 抓取流程
+
+- 用户提供网页链接并要求整理时，先将网页保存为 `Clippings/` 下的原始 Markdown 语料。
+- 默认下载网页图片和视频到 `Clippings/` 相邻目录，保证本地可复查。
+- `Clippings/` 不纳入 git，因此下载的原文和媒体只在本地保留。
+- 抓取后必须检查标题、正文长度和关键章节，避免只保存到导航、错误页或空壳页面。
+- 通过质量检查后，再按 Ingest 流程更新 `wiki/`、`index.md` 和 `log.md`。
+
 ## Git 与发布策略
 
 - 每次完成 ingest、digest、lint 或结构性维护后，都应创建一个语义清晰的本地 commit。

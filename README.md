@@ -17,6 +17,12 @@
 - `Clippings/` 本地保留但不进 git，避免把完整原始语料直接发布到公开仓库。
 - 公开仓库主要保存整理后的 `wiki/`、`index.md`、`log.md` 和项目规约。
 
+## URL 抓取原则
+
+- 网页链接会先保存为 `Clippings/` 原始 Markdown。
+- 默认下载网页媒体到 `Clippings/` 附近，方便以后复查截图、图表和架构图。
+- 抓取后的原文和媒体默认只留本地，不进入公开仓库。
+
 ## 目录结构
 
 - `Clippings/`: 当前 Obsidian Web Clipper 原始语料入口。
